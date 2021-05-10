@@ -77,9 +77,7 @@ const updateContact = async (contactId, body) => {
 
     allContacts.splice(idx, 1, updContact);
 
-    console.log(!idx);
-
-    if (!idx) {
+    if (idx !== -1) {
       fs.writeFile(contacts, JSON.stringify(allContacts));
       console.log(updContact);
       return updContact;
