@@ -81,10 +81,10 @@ router.patch(
   validateUpdateFavorite,
   async (req, res, next) => {
     try {
-      const data = await contacts.updateStatusContact(
-        req.params.contactId,
-        req.body
-      );
+      const id = req.params.contactId;
+      const body = req.body;
+
+      const data = await contacts.updateContact(id, body);
 
       if (data === 'invalidID') {
         res.status(404).json({ message: 'invalid ID' });

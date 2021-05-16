@@ -69,20 +69,10 @@ const updateContact = async (id, body) => {
   }
 };
 
-const updateStatusContact = async (id, body) => {
-  try {
-    return updateContact(id, body);
-  } catch (err) {
-    console.log(err);
-    process.exit(1);
-  }
-};
-
 module.exports = {
   listContacts,
   getContactById,
   removeContact,
   addContact,
-  updateContact,
-  updateStatusContact
+  updateContact
 };
