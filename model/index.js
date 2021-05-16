@@ -1,25 +1,8 @@
-const fs = require('fs/promises');
-const path = require('path');
-const contacts = path.join('model', 'contacts.json');
-const shortid = require('shortid');
+const Contacts = require('./schemas/contacts');
 
 const listContacts = async () => {
   try {
-    const data = await fs.readFile(contacts);
-
-    return JSON.parse(data);
-  } catch (err) {
-    console.log(err);
-    process.exit(1);
-  }
-};
-
-const getContactById = async (contactId) => {
-  try {
-    contactId = Number(contactId);
-    const data = await listContacts().then((data) =>
-      data.find((contact) => contact.id === contactId)
-    );
+    const data = await Contacts.find({});
 
     return data;
   } catch (err) {
@@ -28,36 +11,14 @@ const getContactById = async (contactId) => {
   }
 };
 
-const addContact = async (body) => {
+const getContactById = async (id) => {
   try {
-    const id = shortid.generate();
-
-    const newContact = { id, ...body };
-
-    const allContacts = await listContacts().then((data) => data);
-
-    await fs.writeFile(contacts, JSON.stringify([...allContacts, newContact]));
-
-    return newContact;
-  } catch (err) {
-    console.log(err);
-    process.exit(1);
-  }
-};
-
-const removeContact = async (contactId) => {
-  try {
-    contactId = Number(contactId);
-
-    const allContacts = await listContacts().then((data) => data);
-
-    const data = allContacts.filter((contact) => contact.id !== contactId);
-
-    if (allContacts.length > data.length) {
-      fs.writeFile(contacts, JSON.stringify(data));
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      const data = await Contacts.findById(id);
+      console.log(data);
       return data;
     } else {
-      return;
+      return 'invalidID';
     }
   } catch (err) {
     console.log(err);
@@ -65,24 +26,42 @@ const removeContact = async (contactId) => {
   }
 };
 
-const updateContact = async (contactId, body) => {
+const addContact = async (body) => {
   try {
-    contactId = Number(contactId);
+    const data = await Contacts.create(body);
 
-    const allContacts = await listContacts().then((data) => data);
+    return data;
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+};
 
-    const idx = allContacts.findIndex((contact) => contact.id === contactId);
-
-    const updContact = { ...allContacts[idx], ...body };
-
-    allContacts.splice(idx, 1, updContact);
-
-    if (idx !== -1) {
-      fs.writeFile(contacts, JSON.stringify(allContacts));
-      console.log(updContact);
-      return updContact;
+const removeContact = async (id) => {
+  try {
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      const data = await Contacts.findByIdAndRemove(id);
+      return data;
     } else {
-      return;
+      return 'invalidID';
+    }
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+};
+
+const updateContact = async (id, body) => {
+  try {
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      const data = await Contacts.findByIdAndUpdate(
+        id,
+        { ...body },
+        { new: true }
+      );
+      return data;
+    } else {
+      return 'invalidID';
     }
   } catch (err) {
     console.log(err);
