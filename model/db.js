@@ -11,23 +11,21 @@ const db = mongoose.connect(uriDb, {
 });
 
 mongoose.connection.on('connected', () => {
-  console.log('Database connected successfuly');
+  console.log('Mongoose connected to DB');
 });
 
 mongoose.connection.on('error', (err) => {
-  console.log(`Database connection error: ${err.message}`);
-  process.exit(1);
+  console.log(`Mongoose connection error: ${err.message}`);
 });
 
 mongoose.connection.on('disconnected', () => {
-  console.log('Database disconnected');
+  console.log('Mongoose disconnected');
 });
 
 process.on('SIGINT', async () => {
   mongoose.connection.close(() => {
-    console.log('Database disconnected');
+    console.log('Disconnect MongoDB');
     process.exit();
   });
 });
-
 module.exports = db;
