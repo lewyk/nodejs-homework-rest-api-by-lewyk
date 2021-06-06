@@ -22,7 +22,7 @@ const updateToken = async (id, token) => {
 // }; // for local
 
 const updateAvatar = async (id, avatar, userIdImg = null) => {
-  return await User.updateOne({ _id: id }, { avatar, userIdImg });
+  return await User.updateOne({ _id: id }, { avatarURL: avatar, userIdImg });
 };
 
 module.exports = {
