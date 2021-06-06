@@ -104,11 +104,7 @@ const avatars = async (req, res, next) => {
     );
     await Users.updateAvatar(id, avatarUrl, userIdImg);
 
-    return res.json({
-      status: 'success',
-      code: HttpCode.OK,
-      data: { avatarUrl }
-    });
+    return res.json({ avatarUrl });
   } catch (error) {
     next(error);
   }
