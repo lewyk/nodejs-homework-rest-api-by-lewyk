@@ -27,7 +27,7 @@ app.use(
 app.use(limiter);
 app.use(logger(formatsLogger));
 app.use(cors());
-app.use(express.json({ limit: 15000 }));
+app.use(express.json({ limit: 15000 })); // размер передаваемого body в запросе
 app.use(boolParser());
 
 app.use('/api/users', usersRouter);
