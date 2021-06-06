@@ -16,7 +16,7 @@ cloudinary.config({
 });
 
 // const AVATARS_OF_USERS = process.env.AVATARS_OF_USERS;
-// const PUBLIC_DIR = process.env.PUBLIC_DIR;
+// const PUBLIC_DIR = process.env.PUBLIC_DIR; // for local download avatars
 
 const signup = async (req, res, next) => {
   try {
@@ -91,7 +91,7 @@ const сurrent = async (req, res, next) => {
 //   } catch (error) {
 //     next(error);
 //   }
-// };
+// };  // for local download avatars
 
 const avatars = async (req, res, next) => {
   try {
