@@ -4,16 +4,21 @@ const gravatar = require('gravatar');
 const { Subscription } = require('../../helpers/constants');
 const bcrypt = require('bcryptjs');
 const SALT_FACTOR = 6;
+const { v4: uuidv4 } = require('uuid');
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      default: 'Guest'
+    },
     password: {
       type: String,
-      required: [true, 'Password is required']
+      required: true
     },
     email: {
       type: String,
-      required: [true, 'Email is required'],
+      required: true,
       unique: true
     },
     subscription: {
@@ -34,6 +39,15 @@ const userSchema = new Schema(
     userIdImg: {
       type: String,
       default: null
+    },
+    isVerificated: {
+      type: Boolean,
+      default: false
+    },
+    verificationToken: {
+      type: String,
+      required: true,
+      default: uuidv4()
     }
   },
   {

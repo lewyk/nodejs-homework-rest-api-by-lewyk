@@ -9,11 +9,9 @@ const guard = (req, res, next) => {
       token = req.get('Authorization').split(' ')[1];
     }
     if (!user || err || token !== user.token) {
-      return res.status(HttpCode.UNAUTHORIZED).json({
-        status: 'error',
-        code: HttpCode.UNAUTHORIZED,
-        message: 'Access is denied'
-      });
+      return res
+        .status(HttpCode.UNAUTHORIZED)
+        .json({ message: 'Access is denied' });
     }
     req.user = user;
 
