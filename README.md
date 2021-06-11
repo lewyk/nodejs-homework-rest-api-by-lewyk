@@ -2,7 +2,7 @@ USERS
 
         SIGNUP
 
-        POST URL:3000/api/users/signup
+        POST URL/api/users/signup
 
         Content-Type: application/json
 
@@ -17,7 +17,7 @@ USERS
 
         LOGIN
 
-        POST URL:3000/api/users/login
+        POST URL/api/users/login
 
         Content-Type: application/json
 
@@ -42,7 +42,7 @@ USERS
         ---
 
         LOGOUT
-        POST URL:3000/api/users/logout
+        POST URL/api/users/logout
 
         Content-Type: application/json
 
@@ -56,7 +56,7 @@ USERS
 
         Content-Type: application/json
 
-        POST URL:3000/api/users/verify
+        POST URL/api/users/verify
         body
         {
         "email": "lewyk@hotmail.com"
@@ -66,7 +66,7 @@ USERS
 
         CHANGE AVATAR
 
-        POST URL:3000/api/users/avatars
+        POST URL/api/users/avatars
 
         Content-Type: multipart/form-data
         Authorization: "Bearer {{token}}"
@@ -77,7 +77,7 @@ CONTACTS
 
         ADD CONTACT
 
-        POST URL:3000/api/contacts
+        POST URL/api/contacts
 
         Content-Type: application/json
         Authorization: "Bearer {{token}}"
@@ -94,7 +94,7 @@ CONTACTS
 
         GET ALL CONTACTS
 
-        GET URL:3000/api/contacts
+        GET URL/api/contacts
 
         Content-Type: application/json
         Authorization: "Bearer {{token}}"
@@ -106,7 +106,7 @@ CONTACTS
 
         DELETE CONTACT
 
-        DELETE URL:3000/api/contacts/:ID
+        DELETE URL/api/contacts/:ID
 
         Content-Type: application/json
         Authorization: "Bearer {{token}}"
@@ -118,7 +118,7 @@ CONTACTS
 
         GET CONTACT BY ID
 
-        GET URL:3000/api/contacts/:ID
+        GET URL/api/contacts/:ID
 
         Content-Type: application/json
         Authorization: "Bearer {{token}}"
@@ -130,7 +130,7 @@ CONTACTS
 
         UPDATE CONTACT
 
-        PUTCH URL:3000/api/contacts/:ID
+        PUTCH URL/api/contacts/:ID
 
         Content-Type: application/json
         Authorization: "Bearer {{token}}"
@@ -147,7 +147,7 @@ CONTACTS
 
         UPDATE FAVORITE
 
-        PUTCH URL:3000/api/contacts/:ID/favorite
+        PUTCH URL/api/contacts/:ID/favorite
 
         Content-Type: application/json
         Authorization: "Bearer {{token}}"
