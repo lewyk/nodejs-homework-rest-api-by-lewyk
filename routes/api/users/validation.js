@@ -11,6 +11,10 @@ const schemaSignUp = Joi.object({
   password: Joi.string().required()
 });
 
+const schemaResendVerificationEmail = Joi.object({
+  email: Joi.string().email().required()
+});
+
 const validate = async (schema, body, next) => {
   try {
     await schema.validateAsync(body);
@@ -26,4 +30,8 @@ module.exports.validateLogIn = (req, _res, next) => {
 
 module.exports.validateSignUp = (req, _res, next) => {
   return validate(schemaSignUp, req.body, next);
+};
+
+module.exports.validateVerificationEmail = (req, _res, next) => {
+  return validate(schemaResendVerificationEmail, req.body, next);
 };
