@@ -34,7 +34,7 @@ app.use(boolParser());
 app.use('/api/users', usersRouter);
 app.use('/api/contacts', contactsRouter);
 
-app.use('/', (req, res) => res.send('<h3>Conracts api</h3>'));
+app.use('/', (req, res) => res.send('<h3>Contacts api</h3>'));
 
 app.use((req, res) => {
   res.status(404).json({ status: 'error', code: 404, message: 'Not found' });
