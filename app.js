@@ -20,10 +20,6 @@ require('dotenv').config();
 
 app.use(helmet());
 
-app.use(function (request, response) {
-  response.send('<h3>Conracts api</h3>');
-});
-
 app.use(
   '/avatars',
   express.static(path.join(__dirname, PUBLIC_DIR, AVATARS_OF_USERS))
